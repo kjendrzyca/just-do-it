@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton';
+import AddIcon from 'material-ui/svg-icons/content/add';
 import './App.css'
 import TodoList from './TodoList'
 
@@ -32,6 +35,9 @@ class App extends Component {
   }
 
   addTodo = () => {
+    if (!this.state.currentTodoTitle) {
+      return
+    }
     const newId = getId()
     this.setState(state => ({
       todos: {
@@ -54,21 +60,24 @@ class App extends Component {
           <h2>Just do it!</h2>
         </div>
         <div>
-          <input
+          <TextField
             id="todo-title"
-            type="text"
+            hintText="what do you want to do?"
             onChange={this.changeCurrentTodoText}
             value={this.state.currentTodoTitle}
           />
-          <input
+          <TextField
             id="todo-description"
-            type="text"
+            hintText="description"
             onChange={this.changeCurrentTodoText}
             value={this.state.currentTodoDescription}
           />
-          <button onClick={this.addTodo}>
-            add
-          </button>
+          <RaisedButton
+            id="todo-description"
+            primary={true}
+            icon={<AddIcon />}
+            onTouchTap={this.addTodo}
+          />
 
           <TodoList
             todos={Object.values(this.state.todos)}
