@@ -42,7 +42,11 @@ class App extends Component {
         <div className="App-header">
           <h2>Just do it!</h2>
         </div>
-        <div>
+        <div style={{
+          maxWidth: '500px',
+          margin: '0 auto',
+          textAlign: 'start',
+        }}>
           <AddTodoForm
             addTodo={this.addTodo}
           />

@@ -42,18 +42,23 @@ class AddTodoForm extends Component {
       <div className="AddTodoForm">
         <TextField
           id="todo-title"
+          fullWidth
           hintText="what do you want to do?"
           onChange={this.changeCurrentTodoText}
           value={this.state.currentTodoTitle}
         />
         <TextField
           id="todo-description"
+          fullWidth
+          multiLine
+          rowsMax={4}
           hintText="description"
           onChange={this.changeCurrentTodoText}
           value={this.state.currentTodoDescription}
         />
         <RaisedButton
           id="todo-description"
+          fullWidth
           primary={true}
           icon={<AddIcon />}
           onTouchTap={this.addTodo}
