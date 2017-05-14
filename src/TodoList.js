@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {Card, CardHeader} from 'material-ui/Card';
+import {Card, CardHeader} from 'material-ui/Card'
 import './TodoList.css'
 
 class TodoList extends Component {
