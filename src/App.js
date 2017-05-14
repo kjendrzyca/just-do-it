@@ -10,21 +10,29 @@ class App extends Component {
     super(props)
     this.state = {
       todos: [],
-      currentTodoText: ''
+      currentTodoTitle: '',
+      currentTodoDescription: ''
     }
   }
 
   changeCurrentTodoText = (event) => {
-    this.setState({currentTodoText: event.target.value})
+    if (event.target.id === 'todo-title') {
+      this.setState({currentTodoTitle: event.target.value})
+      return
+    }
+
+    this.setState({currentTodoDescription: event.target.value})
   }
 
   addTodo = () => {
     this.setState(state => ({
       todos: state.todos.concat({
         id: getId(),
-        title: state.currentTodoText
+        title: state.currentTodoTitle,
+        description: state.currentTodoDescription,
       }),
-      currentTodoText: ''
+      currentTodoTitle: '',
+      currentTodoDescription: '',
     }))
   }
 
@@ -36,12 +44,22 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <div>
-          {this.state.todos.map(todo => <div key={todo.id}>{todo.title}</div>)}
+          {this.state.todos.map(todo => <div key={todo.id}>
+            {todo.title} <br />
+            {todo.description}
+          </div>)}
 
           <input
+            id="todo-title"
             type="text"
             onChange={this.changeCurrentTodoText}
-            value={this.state.currentTodoText}
+            value={this.state.currentTodoTitle}
+          />
+          <input
+            id="todo-description"
+            type="text"
+            onChange={this.changeCurrentTodoText}
+            value={this.state.currentTodoDescription}
           />
           <button onClick={this.addTodo}>
             add
