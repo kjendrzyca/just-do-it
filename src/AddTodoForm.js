@@ -1,0 +1,70 @@
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton';
+import AddIcon from 'material-ui/svg-icons/content/add';
+
+class AddTodoForm extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      currentTodoTitle: '',
+      currentTodoDescription: ''
+    }
+  }
+
+  changeCurrentTodoText = (event) => {
+    if (event.target.id === 'todo-title') {
+      this.setState({currentTodoTitle: event.target.value})
+      return
+    }
+
+    this.setState({currentTodoDescription: event.target.value})
+  }
+
+  addTodo = () => {
+    const {currentTodoTitle, currentTodoDescription} = this.state
+
+    if (!currentTodoTitle) {
+      return
+    }
+
+    this.props.addTodo(currentTodoTitle, currentTodoDescription)
+
+    this.setState({
+      currentTodoTitle: '',
+      currentTodoDescription: '',
+    })
+  }
+
+  render () {
+    return (
+      <div className="AddTodoForm">
+        <TextField
+          id="todo-title"
+          hintText="what do you want to do?"
+          onChange={this.changeCurrentTodoText}
+          value={this.state.currentTodoTitle}
+        />
+        <TextField
+          id="todo-description"
+          hintText="description"
+          onChange={this.changeCurrentTodoText}
+          value={this.state.currentTodoDescription}
+        />
+        <RaisedButton
+          id="todo-description"
+          primary={true}
+          icon={<AddIcon />}
+          onTouchTap={this.addTodo}
+        />
+      </div>
+    )
+  }
+}
+
+AddTodoForm.propTypes = {
+  addTodo: PropTypes.func.isRequired
+}
+
+export default AddTodoForm

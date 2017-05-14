@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton';
-import AddIcon from 'material-ui/svg-icons/content/add';
 import './App.css'
+import AddTodoForm from './AddTodoForm'
 import TodoList from './TodoList'
 
 let id = 0
@@ -12,19 +10,8 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      todos: {},
-      currentTodoTitle: '',
-      currentTodoDescription: ''
+      todos: {}
     }
-  }
-
-  changeCurrentTodoText = (event) => {
-    if (event.target.id === 'todo-title') {
-      this.setState({currentTodoTitle: event.target.value})
-      return
-    }
-
-    this.setState({currentTodoDescription: event.target.value})
   }
 
   removeTodo = (id) => {
@@ -34,22 +21,18 @@ class App extends Component {
     })
   }
 
-  addTodo = () => {
-    if (!this.state.currentTodoTitle) {
-      return
-    }
+  addTodo = (title, description) => {
     const newId = getId()
+
     this.setState(state => ({
       todos: {
         ...state.todos,
         [newId]: {
           id: newId,
-          title: state.currentTodoTitle,
-          description: state.currentTodoDescription,
+          title: title,
+          description: description,
         }
-      },
-      currentTodoTitle: '',
-      currentTodoDescription: '',
+      }
     }))
   }
 
@@ -60,23 +43,8 @@ class App extends Component {
           <h2>Just do it!</h2>
         </div>
         <div>
-          <TextField
-            id="todo-title"
-            hintText="what do you want to do?"
-            onChange={this.changeCurrentTodoText}
-            value={this.state.currentTodoTitle}
-          />
-          <TextField
-            id="todo-description"
-            hintText="description"
-            onChange={this.changeCurrentTodoText}
-            value={this.state.currentTodoDescription}
-          />
-          <RaisedButton
-            id="todo-description"
-            primary={true}
-            icon={<AddIcon />}
-            onTouchTap={this.addTodo}
+          <AddTodoForm
+            addTodo={this.addTodo}
           />
 
           <TodoList
