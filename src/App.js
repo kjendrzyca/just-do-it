@@ -9,7 +9,7 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      todos: [],
+      todos: {},
       currentTodoTitle: '',
       currentTodoDescription: ''
     }
@@ -25,12 +25,16 @@ class App extends Component {
   }
 
   addTodo = () => {
+    const newId = getId()
     this.setState(state => ({
-      todos: state.todos.concat({
-        id: getId(),
-        title: state.currentTodoTitle,
-        description: state.currentTodoDescription,
-      }),
+      todos: {
+        ...state.todos,
+        [newId]: {
+          id: newId,
+          title: state.currentTodoTitle,
+          description: state.currentTodoDescription,
+        }
+      },
       currentTodoTitle: '',
       currentTodoDescription: '',
     }))
@@ -59,7 +63,7 @@ class App extends Component {
             add
           </button>
 
-          <TodoList todos={this.state.todos} />
+          <TodoList todos={Object.values(this.state.todos)} />
         </div>
       </div>
     )
