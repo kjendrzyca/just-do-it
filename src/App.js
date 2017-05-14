@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
+import TodoList from './TodoList'
 
 let id = 0
 const getId = () => id++
@@ -40,15 +40,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Just do it!</h2>
         </div>
         <div>
-          {this.state.todos.map(todo => <div key={todo.id}>
-            {todo.title} <br />
-            {todo.description}
-          </div>)}
-
           <input
             id="todo-title"
             type="text"
@@ -64,6 +58,8 @@ class App extends Component {
           <button onClick={this.addTodo}>
             add
           </button>
+
+          <TodoList todos={this.state.todos} />
         </div>
       </div>
     )
