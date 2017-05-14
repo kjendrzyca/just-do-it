@@ -24,6 +24,13 @@ class App extends Component {
     this.setState({currentTodoDescription: event.target.value})
   }
 
+  removeTodo = (id) => {
+    this.setState(({todos}) => {
+      delete todos[id]
+      return {todos}
+    })
+  }
+
   addTodo = () => {
     const newId = getId()
     this.setState(state => ({
@@ -63,7 +70,10 @@ class App extends Component {
             add
           </button>
 
-          <TodoList todos={Object.values(this.state.todos)} />
+          <TodoList
+            todos={Object.values(this.state.todos)}
+            removeTodo={this.removeTodo}
+          />
         </div>
       </div>
     )
