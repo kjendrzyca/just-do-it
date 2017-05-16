@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import AppComponent from './App';
+import {withMaterialTheme} from './utils'
+
+const App = withMaterialTheme(AppComponent)
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
