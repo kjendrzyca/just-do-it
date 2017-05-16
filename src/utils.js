@@ -1,8 +1,9 @@
 import React from 'react'
+import ReactTestUtils from 'react-dom/test-utils'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import baseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import baseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 injectTapEventPlugin()
 
@@ -28,4 +29,6 @@ const withMaterialTheme = (Wrapped) => {
   }
 }
 
-export {withMaterialTheme}
+const simulateTap = (node) => ReactTestUtils.Simulate.touchTap(node)
+
+export {withMaterialTheme, simulateTap}

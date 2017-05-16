@@ -1,12 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { mount } from 'enzyme'
 import AddTodoFormComponent from './AddTodoForm'
-import {withMaterialTheme} from './utils'
+import {withMaterialTheme, simulateTap} from './utils'
 
 const AddTodoForm = withMaterialTheme(AddTodoFormComponent)
 
 it('renders without crashing when required props are provided', () => {
-  const div = document.createElement('div');
+  const div = document.createElement('div')
 
   ReactDOM.render(
     <AddTodoForm
@@ -14,4 +15,67 @@ it('renders without crashing when required props are provided', () => {
     />,
     div
   )
+})
+
+it('should not add todo when values are empty', () => {
+  // given
+  const addTodoStub = jest.fn()
+  const component = mount(
+    <AddTodoForm
+      addTodo={addTodoStub}
+    />
+  )
+
+  // when
+  simulateTap(component.find('#add-button').node)
+
+  // then
+  expect(addTodoStub).not.toBeCalled()
+})
+
+it('should add todo when title is filled in', () => {
+
+  // given
+  const addTodoStub = jest.fn()
+  const component = mount(
+    <AddTodoForm
+      addTodo={addTodoStub}
+    />
+  )
+
+  // when
+  const todoTitle = component.find("#todo-title")
+  todoTitle.node.value = 'homework'
+  todoTitle.simulate('change')
+
+  simulateTap(component.find('#add-button').node)
+
+  // then
+  expect(addTodoStub).toHaveBeenLastCalledWith('homework', '')
+})
+
+it('should add todo when title and description are filled in', () => {
+
+  // given
+  const addTodoStub = jest.fn()
+  const component = mount(
+    <AddTodoForm
+      addTodo={addTodoStub}
+    />
+  )
+
+  // when
+  const todoTitle = component.find("#todo-title")
+  todoTitle.node.value = 'homework'
+
+  const todoDescription = component.find("#todo-description")
+  todoDescription.node.value = 'math and computer science'
+
+  todoTitle.simulate('change')
+  todoDescription.simulate('change')
+
+  simulateTap(component.find('#add-button').node)
+
+  // then
+  expect(addTodoStub).toHaveBeenLastCalledWith('homework', 'math and computer science')
 })

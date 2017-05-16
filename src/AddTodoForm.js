@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton';
-import AddIcon from 'material-ui/svg-icons/content/add';
+import RaisedButton from 'material-ui/RaisedButton'
+import AddIcon from 'material-ui/svg-icons/content/add'
 
 class AddTodoForm extends Component {
   constructor (props) {
@@ -57,7 +57,7 @@ class AddTodoForm extends Component {
           value={this.state.currentTodoDescription}
         />
         <RaisedButton
-          id="todo-description"
+          id="add-button"
           fullWidth
           primary={true}
           icon={<AddIcon />}
