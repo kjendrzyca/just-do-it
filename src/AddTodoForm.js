@@ -25,7 +25,7 @@ class AddTodoForm extends Component {
   addTodo = () => {
     const {currentTodoTitle, currentTodoDescription} = this.state
 
-    if (!currentTodoTitle) {
+    if (!currentTodoTitle.trim()) {
       return
     }
 

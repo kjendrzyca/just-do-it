@@ -34,7 +34,6 @@ it('should not call addTodo when input values are empty', () => {
 })
 
 it('should call addTodo handler when title input is filled in', () => {
-
   // given
   const addTodoStub = jest.fn()
   const component = mount(
@@ -52,6 +51,26 @@ it('should call addTodo handler when title input is filled in', () => {
 
   // then
   expect(addTodoStub).toHaveBeenLastCalledWith('homework', '')
+})
+
+it('should not call addTodo handler when title input is empty string with spaces only', () => {
+  // given
+  const addTodoStub = jest.fn()
+  const component = mount(
+    <AddTodoForm
+      addTodo={addTodoStub}
+    />
+  )
+
+  // when
+  const todoTitle = component.find("#todo-title")
+  todoTitle.node.value = '   '
+  todoTitle.simulate('change')
+
+  simulateTap(component.find('#add-button').node)
+
+  // then
+  expect(addTodoStub).not.toBeCalled()
 })
 
 it('should call addTodo handler when title and description inputs are filled in', () => {
