@@ -79,3 +79,17 @@ it('should call removeTodo handler when clicking on TodoRemoveButton', () => {
   // then
   expect(removeTodoStub).toBeCalledWith(sampleTodos[0].id)
 })
+
+it('should not display tods when list is empty', () => {
+  // when
+  const component = mount(
+    <TodoList
+      todos={[]}
+      removeTodo={() => {}}
+    />
+  )
+
+  // then
+  const cards = component.find('Card')
+  expect(cards.length).toBe(0)
+})
