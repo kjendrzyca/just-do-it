@@ -17,7 +17,7 @@ it('renders without crashing when required props are provided', () => {
   )
 })
 
-it('should not add todo when values are empty', () => {
+it('should not call addTodo when input values are empty', () => {
   // given
   const addTodoStub = jest.fn()
   const component = mount(
@@ -33,7 +33,7 @@ it('should not add todo when values are empty', () => {
   expect(addTodoStub).not.toBeCalled()
 })
 
-it('should add todo when title is filled in', () => {
+it('should call addTodo handler when title input is filled in', () => {
 
   // given
   const addTodoStub = jest.fn()
@@ -54,7 +54,7 @@ it('should add todo when title is filled in', () => {
   expect(addTodoStub).toHaveBeenLastCalledWith('homework', '')
 })
 
-it('should add todo when title and description are filled in', () => {
+it('should call addTodo handler when title and description inputs are filled in', () => {
 
   // given
   const addTodoStub = jest.fn()

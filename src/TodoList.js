@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Card, CardHeader} from 'material-ui/Card'
-import DoneIcon from 'material-ui/svg-icons/action/done';
+import DoneIcon from 'material-ui/svg-icons/action/done'
 
 const TodoRemoveButton = ({id, onClick}) => <div style={{float: 'right'}}>
   <DoneIcon
