@@ -73,8 +73,7 @@ it('should not call addTodo handler when title input is empty string with spaces
   expect(addTodoStub).not.toBeCalled()
 })
 
-it('should call addTodo handler when title and description inputs are filled in', () => {
-
+it('should call addTodo handler when title and description inputs are filled in and clear the inputs', () => {
   // given
   const addTodoStub = jest.fn()
   const component = mount(
@@ -97,4 +96,6 @@ it('should call addTodo handler when title and description inputs are filled in'
 
   // then
   expect(addTodoStub).toHaveBeenLastCalledWith('homework', 'math and computer science')
+  expect(todoTitle.node.value).toBe('')
+  expect(todoDescription.node.value).toBe('')
 })
