@@ -3,7 +3,11 @@ import PropTypes from 'prop-types'
 import {Card, CardHeader} from 'material-ui/Card'
 import DoneIcon from 'material-ui/svg-icons/action/done'
 
-const TodoRemoveButton = ({id, onClick}) => <div style={{float: 'right'}}>
+const TodoRemoveButton = ({id, onClick}) => <div style={{
+  display: 'inline-block',
+  position: 'absolute',
+  right: '16px',
+}}>
   <DoneIcon
     onClick={() => onClick(id)}
     hoverColor="#4CAF50"
