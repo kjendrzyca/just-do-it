@@ -18,7 +18,7 @@ Launches the test runner in the interactive watch mode.<br>
 
 Running wit `--verbose` flag by default.
 
-To see the code coverage run the command with `--coverage` flag.
+To see the code coverage run the command with `--coverage` flag:
 
 `npm test -- --coverage`
 
@@ -32,7 +32,7 @@ Your app is ready to be deployed!
 
 ### `now-start`
 
-Starting script for [now]https://zeit.co/now (uses static server).
+Starting script for [now](https://zeit.co/now) (uses static server).
 
 ### `npm run eject`
 
