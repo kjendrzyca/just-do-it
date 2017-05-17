@@ -6,7 +6,7 @@ import {withMaterialTheme, simulateTap} from './utils'
 
 const AddTodoForm = withMaterialTheme(AddTodoFormComponent)
 
-it('renders without crashing when required props are provided', () => {
+it('should render without crashing when required props are provided', () => {
   const div = document.createElement('div')
 
   ReactDOM.render(

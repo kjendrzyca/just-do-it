@@ -19,7 +19,7 @@ const sampleTodos = [
   }
 ]
 
-it('renders without crashing when required props are provided', () => {
+it('should render without crashing when required props are provided', () => {
   const div = document.createElement('div')
 
   ReactDOM.render(
@@ -80,7 +80,7 @@ it('should call removeTodo handler when clicking on TodoRemoveButton', () => {
   expect(removeTodoStub).toBeCalledWith(sampleTodos[0].id)
 })
 
-it('should not display tods when list is empty', () => {
+it('should not display todos when list is empty', () => {
   // when
   const component = mount(
     <TodoList

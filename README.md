@@ -16,6 +16,12 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.<br>
 
+Running wit `--verbose` flag by default.
+
+To see the code coverage run the command with `--coverage` flag.
+
+`npm test -- --coverage`
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
