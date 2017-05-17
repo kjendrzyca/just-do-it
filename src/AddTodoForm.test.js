@@ -31,6 +31,12 @@ it('should not call addTodo when input values are empty', () => {
 
   // then
   expect(addTodoStub).not.toBeCalled()
+  const errorText = component
+    .find('TextField').first()
+    .children().last()
+    .text()
+
+  expect(errorText).toBe('This field is required')
 })
 
 it('should call addTodo handler when title input is filled in', () => {

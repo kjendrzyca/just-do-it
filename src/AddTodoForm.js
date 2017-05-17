@@ -9,13 +9,17 @@ class AddTodoForm extends Component {
     super(props)
     this.state = {
       currentTodoTitle: '',
-      currentTodoDescription: ''
+      currentTodoDescription: '',
+      isError: false
     }
   }
 
   changeCurrentTodoText = (event) => {
     if (event.target.id === 'todo-title') {
-      this.setState({currentTodoTitle: event.target.value})
+      this.setState({
+        currentTodoTitle: event.target.value,
+        isError: false
+      })
       return
     }
 
@@ -26,6 +30,7 @@ class AddTodoForm extends Component {
     const {currentTodoTitle, currentTodoDescription} = this.state
 
     if (!currentTodoTitle.trim()) {
+      this.setState({isError: true})
       return
     }
 
@@ -42,6 +47,7 @@ class AddTodoForm extends Component {
       <div className="AddTodoForm">
         <TextField
           id="todo-title"
+          errorText={this.state.isError && "This field is required"}
           fullWidth
           hintText="what do you want to do?"
           onChange={this.changeCurrentTodoText}
